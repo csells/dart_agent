@@ -10,7 +10,9 @@ Future<void> main() async {
   }
 
   final model = GenerativeModel(
-    model: 'gemini-2.0-flash',
+    // model: 'gemini-2.0-flash',
+    // model: 'gemini-2.5-flash-preview-04-17',
+    model: 'gemini-2.5-pro-preview-03-25',
     apiKey: apiKey,
     tools: [
       Tool(
@@ -96,17 +98,21 @@ Future<String> handleToolCall(FunctionCall call) async {
       case 'read_file':
         return await readFile(args['path'] as String);
       case 'list_files':
-        return await listFiles(args['dir'] as String);
+        return await listFiles(args['dir'] as String? ?? '.');
       case 'edit_file':
         return await editFile(
           args['path'] as String,
           args['replace'] as String,
         );
       default:
-        return 'Unknown tool: ${call.name}';
+        final err = 'Unknown tool: ${call.name}';
+        print(err);
+        return err;
     }
   } catch (e) {
-    return 'Error executing ${call.name}: $e';
+    final err = 'Error executing ${call.name}: $e';
+    print(err);
+    return err;
   }
 }
 
