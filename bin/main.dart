@@ -2,66 +2,6 @@ import 'dart:io';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-// void main() async {
-//   // Initialize the model with the correct model name and API key
-//   final model = GenerativeModel(
-//     model: 'gemini-2.0-flash',
-//     apiKey: 'AIzaSyDZ0bjBJd7MdRXi4L9kPFaBW1COC1kpnlE',
-//     tools: [
-//       Tool(
-//         functionDeclarations: [
-//           FunctionDeclaration(
-//             'multiply',
-//             'Multiply two numbers and return the product.',
-//             Schema(
-//               SchemaType.object,
-//               properties: {
-//                 'x': Schema(SchemaType.number),
-//                 'y': Schema(SchemaType.number),
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     ],
-//   );
-
-//   // Start a chat session
-//   final chat = model.startChat();
-
-//   print('Gemini 2.0 Flash Agent is running. Type "exit" to quit.');
-//   while (true) {
-//     stdout.write('\x1B[94mYou\x1B[0m: ');
-//     final input = stdin.readLineSync();
-//     if (input == null || input.toLowerCase() == 'exit') break;
-
-//     final response = await chat.sendMessage(Content.text(input));
-
-//     final text = response.text?.trim();
-//     if (text != null && text.isNotEmpty) {
-//       print('\x1B[93mGemini\x1B[0m: $text');
-//     }
-
-//     for (final candidate in response.candidates) {
-//       for (final part in candidate.content.parts) {
-//         if (part is FunctionCall) {
-//           if (part.name == 'multiply') {
-//             final x = part.args['x'] as num;
-//             final y = part.args['y'] as num;
-//             final result = x * y;
-//             final followup = await chat.sendMessage(
-//               Content.functionResponse(part.name, {'result': result}),
-//             );
-//             if (followup.text != null) {
-//               print('\x1B[93mGemini\x1B[0m: ${followup.text}');
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 Future<void> main() async {
   final apiKey = Platform.environment['GEMINI_API_KEY'];
   if (apiKey == null) {
