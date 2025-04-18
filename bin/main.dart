@@ -62,16 +62,28 @@ Future<void> main() async {
       print('\x1B[93mGemini\x1B[0m: $text');
     }
 
+    final functionResponses = <Content>[];
     for (final candidate in response.candidates) {
       for (final part in candidate.content.parts) {
         if (part is FunctionCall) {
           final result = await handleToolCall(part);
           print('\x1B[92mTool\x1B[0m: ${part.name}(${part.args})');
-          final response = await chat.sendMessage(
+          functionResponses.add(
             Content.functionResponse(part.name, {'result': result}),
           );
-          print('\x1B[93mGemini\x1B[0m: ${response.text}');
         }
+      }
+    }
+
+    if (functionResponses.isNotEmpty) {
+      final response = await chat.sendMessage(
+        Content(
+          '',
+          functionResponses.map((c) => c.parts).expand((p) => p).toList(),
+        ),
+      );
+      if (response.text != null) {
+        print('\x1B[93mGemini\x1B[0m: ${response.text}');
       }
     }
   }
