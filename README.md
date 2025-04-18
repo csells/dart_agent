@@ -1,2 +1,4 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+# thor_agent
+An example AI agent written in Dart using the Gemini API ported from the AI agent
+written in Go by Thorsten Ball in his blog post [How to Build an Agent
+or: The Emperor Has No Clothes](https://ampcode.com/how-to-build-an-agent).
