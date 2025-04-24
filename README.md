@@ -3,9 +3,14 @@ An example AI agent written in Dart using the Gemini API inspired by the AI
 agent written in Go by Thorsten Ball in his blog post [How to Build an Agent or:
 The Emperor Has No Clothes](https://ampcode.com/how-to-build-an-agent).
 
+## Post
+You can read the full store of this repo in [this blog
+post](https://sellsbrothers.com/ai-agent-with-dart-gemini).
+
 ## Usage
-Start by [getting yourself a Gemini API key](https://aistudio.google.com/app/apikey) and making
-sure that the `GEMINI_API_KEY` environment variable is set before running the app.
+Start by [getting yourself a Gemini API
+key](https://aistudio.google.com/app/apikey) and making sure that the
+`GEMINI_API_KEY` environment variable is set before running the app.
 
 You can run it at the CLI like so:
 
